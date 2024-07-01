@@ -28,16 +28,16 @@ def get_restaurants():
     restaurants = Restaurant.query.all()
     return jsonify([restaurant.to_dict() for restaurant in restaurants])
 
-# @app.route("/restaurants/<int:restaurant_id>", methods=["GET"])
-# def get_restaurant(restaurant_id):
-#     restaurant = Restaurant.query.get(restaurant_id)
-#     if not restaurant:
-#         return make_response(jsonify({"error": "Restaurant not found"}), 404)
+@app.route("/restaurants/<int:restaurant_id>", methods=["GET"])
+def get_restaurant(restaurant_id):
+    restaurant = Restaurant.query.get(restaurant_id)
+    if not restaurant:
+        return make_response(jsonify({"error": "Restaurant not found"}), 404)
 
-#     restaurant_data = restaurant.to_dict()
-#     restaurant_data["restaurant_pizzas"] = [rp.pizza.to_dict() for rp in restaurant.restaurant_pizzas]
+    restaurant_data = restaurant.to_dict()
+    restaurant_data["restaurant_pizzas"] = [rp.pizza.to_dict() for rp in restaurant.restaurant_pizzas]
     
-#     return jsonify(restaurant_data)
+    return jsonify(restaurant_data)
 
 # @app.route("/restaurants/<int:restaurant_id>", methods=["DELETE"])
 # def delete_restaurant(restaurant_id):
