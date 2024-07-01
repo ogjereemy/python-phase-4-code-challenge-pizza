@@ -50,10 +50,10 @@ def delete_restaurant(restaurant_id):
     
     return make_response(jsonify({"message": "Restaurant deleted"}), 204)
 
-# @app.route('/pizzas', methods=['GET'])
-# def get_pizzas():
-#     pizzas = Pizza.query.all()
-#     return jsonify([pizza.to_dict() for pizza in pizzas])
+@app.route('/pizzas', methods=['GET'])
+def get_pizzas():
+    pizzas = Pizza.query.all()
+    return jsonify([pizza.to_dict() for pizza in pizzas])
 
 
 # @app.route('/restaurant_pizzas', methods=['POST'])
