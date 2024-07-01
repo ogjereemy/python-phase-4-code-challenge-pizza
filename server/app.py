@@ -35,7 +35,7 @@ def get_restaurant(restaurant_id):
         return make_response(jsonify({"error": "Restaurant not found"}), 404)
 
     restaurant_data = restaurant.to_dict()
-    restaurant_data["restaurant_pizzas"] = [rp.pizza.to_dict() for rp in restaurant.restaurant_pizzas]
+    restaurant_data["restaurant_pizzas"] = [rest.pizza.to_dict() for rest in restaurant.restaurant_pizzas]
     
     return jsonify(restaurant_data)
 
