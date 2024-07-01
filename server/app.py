@@ -56,33 +56,33 @@ def get_pizzas():
     return jsonify([pizza.to_dict() for pizza in pizzas])
 
 
-# @app.route('/restaurant_pizzas', methods=['POST'])
-# def create_restaurant_pizza():
-#     data = request.get_json()
+@app.route('/restaurant_pizzas', methods=['POST'])
+def create_restaurant_pizza():
+    data = request.get_json()
 
-#     price = data.get('price')
-#     pizza_id = data.get('pizza_id')
-#     restaurant_id = data.get('restaurant_id')
+    price = data.get('price')
+    pizza_id = data.get('pizza_id')
+    restaurant_id = data.get('restaurant_id')
 
-#     if not all([price, pizza_id, restaurant_id]):
-#         return make_response(jsonify({"errors": ["validation errors"]}), 400)
+    if not all([price, pizza_id, restaurant_id]):
+        return make_response(jsonify({"errors": ["validation errors"]}), 400)
 
-#     if not (1 <= price <= 30):
-#         return make_response(jsonify({"errors": ["validation errors"]}), 400)
+    if not (1 <= price <= 30):
+        return make_response(jsonify({"errors": ["validation errors"]}), 400)
 
-#     pizza = Pizza.query.get(pizza_id)
-#     if not pizza:
-#         return make_response(jsonify({"errors": ["validation errors"]}), 404)
+    pizza = Pizza.query.get(pizza_id)
+    if not pizza:
+        return make_response(jsonify({"errors": ["validation errors"]}), 404)
 
-#     restaurant = Restaurant.query.get(restaurant_id)
-#     if not restaurant:
-#         return make_response(jsonify({"errors": ["validation errors"]}), 404)
+    restaurant = Restaurant.query.get(restaurant_id)
+    if not restaurant:
+        return make_response(jsonify({"errors": ["validation errors"]}), 404)
 
-#     restaurant_pizza = RestaurantPizza(price=price, pizza=pizza, restaurant=restaurant)
-#     db.session.add(restaurant_pizza)
-#     db.session.commit()
+    restaurant_pizza = RestaurantPizza(price=price, pizza=pizza, restaurant=restaurant)
+    db.session.add(restaurant_pizza)
+    db.session.commit()
 
-#     return jsonify(restaurant_pizza.to_dict()), 201
+    return jsonify(restaurant_pizza.to_dict()), 201
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
