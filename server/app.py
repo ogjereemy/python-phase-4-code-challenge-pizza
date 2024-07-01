@@ -39,16 +39,16 @@ def get_restaurant(restaurant_id):
     
     return jsonify(restaurant_data)
 
-# @app.route("/restaurants/<int:restaurant_id>", methods=["DELETE"])
-# def delete_restaurant(restaurant_id):
-#     restaurant = Restaurant.query.get(restaurant_id)
-#     if not restaurant:
-#         return make_response(jsonify({"error": "Restaurant not found"}), 404)
+@app.route("/restaurants/<int:restaurant_id>", methods=["DELETE"])
+def delete_restaurant(restaurant_id):
+    restaurant = Restaurant.query.get(restaurant_id)
+    if not restaurant:
+        return make_response(jsonify({"error": "Restaurant not found"}), 404)
 
-#     db.session.delete(restaurant)
-#     db.session.commit()
+    db.session.delete(restaurant)
+    db.session.commit()
     
-#     return make_response(jsonify({"message": "Restaurant deleted"}), 204)
+    return make_response(jsonify({"message": "Restaurant deleted"}), 204)
 
 # @app.route('/pizzas', methods=['GET'])
 # def get_pizzas():
