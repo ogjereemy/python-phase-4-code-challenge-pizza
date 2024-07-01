@@ -23,10 +23,10 @@ api = Api(app)
 def index():
     return "<h1>Code challenge</h1>"
 
-# @app.route("/restaurants", methods=["GET"])
-# def get_restaurants():
-#     restaurants = Restaurant.query.all()
-#     return jsonify([restaurant.to_dict() for restaurant in restaurants])
+@app.route("/restaurants", methods=["GET"])
+def get_restaurants():
+    restaurants = Restaurant.query.all()
+    return jsonify([restaurant.to_dict() for restaurant in restaurants])
 
 # @app.route("/restaurants/<int:restaurant_id>", methods=["GET"])
 # def get_restaurant(restaurant_id):
